@@ -2,9 +2,11 @@ package com.catalystone.mbs.controller;
 
 import com.catalystone.mbs.entity.Bookings;
 import com.catalystone.mbs.entity.ShowTimings;
+import com.catalystone.mbs.entity.Theater;
 import com.catalystone.mbs.exception.UserException;
 import com.catalystone.mbs.repository.BookingRepository;
 import com.catalystone.mbs.repository.ShowTimingsRepository;
+import com.catalystone.mbs.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,9 @@ public class UserController {
 
     @Autowired
     ShowTimingsRepository sRepo;
+
+    @Autowired
+    TheaterRepository tRepo;
 
     @GetMapping("/history")
     public ResponseEntity<List<Bookings>> getBookingHistory (@RequestParam("un") String userName)
@@ -38,6 +43,12 @@ public class UserController {
     @PostMapping("bookTicket")
     public ResponseEntity<Bookings> bookTicket (@RequestBody Bookings booking){
         return ResponseEntity.ok(bookingRepo.save(booking));
+    }
+
+    @GetMapping("/getTheaters")
+    public ResponseEntity<List<Theater>> getTheaters (){
+        List<Theater> theaters = tRepo.findAll();
+        return ResponseEntity.ok(theaters);
     }
 
 }

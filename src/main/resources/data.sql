@@ -1,6 +1,3 @@
-insert into user_info(username,password, role) values ('admin','admin','admin');
-
-insert into user_info(username,password, role) values ('user','user','user');
 
 insert into theater(theater_id,theatre_name) values (1,'Theater1');
 
